@@ -1,0 +1,40 @@
+---
+layout: layouts/base.njk
+---
+<h1>Resume</h1>
+
+<section aria-labelledby='heading-skills'>
+  <h2 id='heading-skills'>Skills</h2>
+  {% for category, skillsList in resume.skills %}
+    <h3>{{ category }}</h3>
+    <ul>
+      {% for skill in skillsList %}
+        <li>{skill}</li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+</section>
+
+<section aria-labelledby='heading-projects'>
+  <h2 id='heading-projects'>Projects</h2>
+  {% for project, bulletPoints in resume.projects %}
+    <h3>{{ project }}</h3>
+    <ul>
+      {% for bullet in bulletPoints %}
+        <li>{bullet}</li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+</section>
+
+<section aria-labelledby='heading-education'>
+  <h2 id='heading-education'>Education</h2>
+</section>
+
+<section aria-labelledby='heading-work'>
+  <h2 id='heading-work'>Work Experience</h2>
+</section>
+
+<section aria-labelledby='heading-references'>
+  <h2 id='references'>References</h2>
+</section>

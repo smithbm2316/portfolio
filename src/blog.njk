@@ -1,0 +1,39 @@
+---
+layout: layouts/base.njk
+---
+<section>
+  <h1>Blog</h1>
+  <h2>Latest Posts</h2>
+  {% for post in collections.posts %}
+    <ul>
+      <li>
+        <a class='default-link' href='{{ post.url }}'>
+          {post.frontmatter.title}
+        </a>
+      </li>
+    </ul>
+  {% endfor %}
+
+  <h2>Tags</h2>
+  {% for tag in collections.tags %}
+    <ul>
+      <li>
+        <a class='default-link' href='{{ tag.permalink }}'>{ tag }}</a>
+      </li>
+    </ul>
+  {% endfor %}
+</section>
+
+<style>
+  h2 {
+    margin-block: 2rem;
+  }
+
+  li {
+    margin-block: 1rem;
+  }
+  li::marker {
+    color: var(--laserwave-maximumBlue);
+    content: '• ';
+  }
+</style>

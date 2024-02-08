@@ -1,41 +1,30 @@
 {
-  "name": "astro-portfolio",
+  "name": "bensmith.sh",
   "type": "module",
-  "version": "0.0.2",
-  "private": true,
+  "version": "0.0.1",
+  "description": "Ben Smith's website",
   "scripts": {
-    "dev": "ASTRO_ENV=development astro dev",
-    "start": "ASTRO_ENV=production astro build && astro preview",
-    "build": "ASTRO_ENV=production astro build",
-    "preview": "ASTRO_ENV=production astro preview",
-    "astro": "astro"
+    "dev": "concurrently \"npm:dev:*\"",
+    "dev:tailwind": "tailwindcss -i src/assets/styles.css -o _site/assets/styles.css --watch",
+    "dev:eleventy": "eleventy --serve",
+    "build": "npm run build:eleventy && npm run build:tailwind",
+    "build:tailwind": "tailwindcss -i src/assets/styles.css -o _site/assets/styles.css --minify",
+    "build:eleventy": "eleventy",
+    "preview": "http-server -p 2323 _site"
   },
-  "dependencies": {
-    "@astrojs/mdx": "^2.1.0",
-    "@astrojs/rss": "^4.0.3",
-    "@astrojs/sitemap": "^3.0.5",
-    "@astrojs/tailwind": "^5.1.0",
-    "@iconify-json/mdi": "^1.1.64",
-    "astro": "^4.2.4",
-    "astro-icon": "^1.0.2",
-    "sharp": "^0.33.2",
-    "tailwindcss": "^3.4.1",
-    "zod": "^3.20.6"
-  },
+  "license": "MIT",
   "devDependencies": {
-    "@types/sanitize-html": "^2.8.1",
-    "@typescript-eslint/parser": "^5.54.0",
-    "eslint": "^8.35.0",
-    "eslint-plugin-astro": "^0.23.0",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "mdast-util-to-string": "^3.1.1",
-    "prettier": "^2.8.4",
-    "prettier-plugin-astro": "^0.8.0",
-    "reading-time": "^1.5.0",
-    "sanitize-html": "^2.10.0",
-    "typescript": "^5.3.3"
-  },
-  "engines": {
-    "node": ">= 20.5.0"
+    "@11ty/eleventy": "3.0.0-alpha.4",
+    "@11ty/eleventy-fetch": "^4.0.0",
+    "@11ty/eleventy-img": "^3.1.8",
+    "@11ty/eleventy-plugin-directory-output": "^1.0.1",
+    "@11ty/eleventy-plugin-rss": "^1.2.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+    "@11ty/eleventy-plugin-webc": "^0.11.2",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.56.0",
+    "http-server": "^14.1.1",
+    "prettier": "^3.2.5",
+    "tailwindcss": "^3.4.1"
   }
 }

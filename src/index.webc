@@ -1,0 +1,37 @@
+---
+layout: layouts/base.njk
+---
+
+<section>
+  <img
+    src="/assets/images/profile_pic.jpeg"
+    alt="Me!"
+    class="object-center object-cover aspect-square"
+    width="1000"
+    height="1000"
+    loading="eager"
+  />
+
+  <div>
+    <a href="/">
+      <h1 class="text-3xl font-semibold">Ben Smith</h1>
+    </a>
+
+    <p>
+      I'm a web developer with a passion for the command line, coffee, and
+      crafting delightful user experiences for the web!
+    </p>
+
+    <ul>
+      <li>
+        <a href="https://github.com/smithbm2316">GitHub</a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/in/smithbm2316">LinkedIn</a>
+      </li>
+      <li>
+        <a href="mailto:bsmithdev@mailbox.org">Email</a>
+      </li>
+    </ul>
+  </div>
+</section>
