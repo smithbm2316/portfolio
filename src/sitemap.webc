@@ -4,10 +4,8 @@ eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
-  {% for page in collections.all %}
-    <url>
-      <loc>{{ site.url }}{{ page.url | url }}</loc>
-      <lastmod>{{ page.date.toISOString() }}</lastmod>
-    </url>
-  {% endfor %}
+  <url webc:for="page of collections.all">
+    <loc @text="url(site.url + page.url)"></loc>
+    <lastmod @text="page.date.toISOString()"></lastmod>
+  </url>
 </urlset>

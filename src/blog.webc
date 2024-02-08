@@ -1,0 +1,31 @@
+<section>
+  <h1 class="text-6xl font-bold">Blog</h1>
+
+  <h2 class="text-3xl my-8 font-bold">Latest Posts</h2>
+  <ul webc:for="post of collections.posts">
+    <li
+      class="my-4 list-disc list-inside"
+      webc:if="post.data.draft !== true"
+    >
+      <a
+        class="default-link"
+        :href="url(post.url)"
+        @text="post.data.title"
+      ></a>
+    </li>
+  </ul>
+
+  <h2 class="text-3xl my-8 font-bold">Tags</h2>
+  <ul webc:for="tag of Object.keys(collections)">
+    <!-- good place to add a global shortcode/filter where we can configure all the tags we don't want to ever expose when looping through our public tags system -->
+    <li
+      class="my-4 list-disc list-inside"
+      webc:if="tag !== 'all' && tag !== 'posts'"
+    >
+      <a
+        :href="url('/blog/tags/' + tag)"
+        @text="tag"
+      ></a>
+    </li>
+  </ul>
+</section>

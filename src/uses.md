@@ -1,6 +1,3 @@
----
-layout: layouts/base.njk
----
 # Uses
 
 ## Editor

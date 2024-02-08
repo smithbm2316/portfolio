@@ -26,7 +26,6 @@ export default function configureEleventy(eleventyConfig) {
   eleventyConfig.addPlugin(pluginWebc);
 
   // add asset folders to passthrough
-  eleventyConfig.setServerPassthroughCopyBehavior('passthrough');
   // DO NOT add /assets/styles.css, since it will overwrite what our tailwind build process adds to our output folder for us
   eleventyConfig.addPassthroughCopy(`${config.dir.input}/assets/fonts`);
   eleventyConfig.addPassthroughCopy(`${config.dir.input}/assets/icons`);

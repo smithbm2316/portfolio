@@ -1,7 +1,3 @@
----
-layout: layouts/base.njk
----
-
 <section>
   <img
     src="/assets/images/profile_pic.jpeg"

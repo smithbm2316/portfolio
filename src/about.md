@@ -1,6 +1,3 @@
----
-layout: layouts/base.njk
----
 # About
 
 <div class='about-image-grid'>

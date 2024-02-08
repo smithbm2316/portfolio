@@ -1,9 +1,9 @@
 /** @type {import("prettier").Config} */
 export default {
-  // configure prettier to run on .webc, .liquid, and .njk files
+  // configure prettier to run on .webc files
   overrides: [
     {
-      files: ['./src/**/*.webc', './src/**/*.liquid', './src/**/*.njk'],
+      files: ['./src/**/*.webc'],
       options: {
         parser: 'html',
       },
