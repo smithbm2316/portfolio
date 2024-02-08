@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "description": "Ben Smith's website",
   "scripts": {
-    "debug": "DEBUG=Eleventy* npm run dev",
+    "debug:dev": "DEBUG=Eleventy* npm run dev",
+    "debug:prod": "DEBUG=Eleventy* npm run build",
     "dev": "concurrently \"npm:dev:*\"",
     "dev:tailwind": "tailwindcss -i src/assets/styles.css -o _site/assets/styles.css --watch",
     "dev:eleventy": "eleventy --serve",
