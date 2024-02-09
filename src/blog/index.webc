@@ -2,6 +2,8 @@
 override:tags: []
 ---
 
+<!-- TODO: move "/blog" to "/posts", and move "/blog/tags" to "/tags" to simplify url structure and tags overrides -->
+
 <section>
   <h1 class="text-6xl font-bold">Blog</h1>
 
