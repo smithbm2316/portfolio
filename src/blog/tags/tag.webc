@@ -1,0 +1,12 @@
+<h1 @text="tag"></h1>
+<ol>
+  <li
+    class="list-disc list-inside"
+    webc:for="post of collections[tag]"
+  >
+    <a
+      :href="post.url"
+      @text="post.data.title"
+    ></a>
+  </li>
+</ol>

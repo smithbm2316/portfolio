@@ -42,8 +42,7 @@ export default function configureEleventy(eleventyConfig) {
     }
 
     /** @type {string[]} */
-    let finalTags = Array.from(tagsSet);
-    return finalTags;
+    return Array.from(tagsSet).sort();
   });
 
   // add webc
