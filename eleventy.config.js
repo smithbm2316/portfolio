@@ -17,10 +17,34 @@ export default function configureEleventy(eleventyConfig) {
       includes: '_includes',
       data: '_data',
     },
-    markdownTemplateEngine: 'liquid',
-    htmlTemplateEngine: 'liquid',
-    templateFormats: ['html', 'md', 'liquid', 'njk', '11ty.js', 'webc'],
+    markdownTemplateEngine: 'njk',
+    htmlTemplateEngine: 'njk',
+    templateFormats: ['html', 'md', 'njk', '11ty.js', 'webc'],
   };
+
+  // create a collection that only contains the list of tags attached to posts
+  eleventyConfig.addCollection('postTags', (collection) => {
+    /** @type {Set<string>} */
+    let tagsSet = new Set();
+    let ignoredTags = ['posts', 'all'];
+    let all = collection.getAll();
+
+    for (let item of all) {
+      if (!item.data.tags) {
+        continue;
+      }
+      for (let tag of item.data.tags) {
+        if (ignoredTags.includes(tag)) {
+          continue;
+        }
+        tagsSet.add(tag);
+      }
+    }
+
+    /** @type {string[]} */
+    let finalTags = Array.from(tagsSet);
+    return finalTags;
+  });
 
   // add webc
   eleventyConfig.addPlugin(pluginWebc);

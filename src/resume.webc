@@ -1,0 +1,49 @@
+<h1>Resume</h1>
+
+<section aria-labelledby="heading-skills">
+  <h2 id="heading-skills">Skills</h2>
+
+  <looper
+    webc:nokeep
+    webc:for="(category, skillsList) in skills"
+  >
+    <h3 @text="category"></h3>
+    <ul>
+      <li
+        webc:for="skill of skillsList"
+        @text="skill"
+        class="list-disc list-inside"
+      ></li>
+    </ul>
+  </looper>
+</section>
+
+<section aria-labelledby="heading-projects">
+  <h2 id="heading-projects">Projects</h2>
+
+  <looper
+    webc:nokeep
+    webc:for="(project, bulletPoints) in projects"
+  >
+    <h3 @text="project"></h3>
+    <ul>
+      <li
+        webc:for="bullet of bulletPoints"
+        @text="bullet"
+        class="list-disc list-inside"
+      ></li>
+    </ul>
+  </looper>
+</section>
+
+<section aria-labelledby="heading-education">
+  <h2 id="heading-education">Education</h2>
+</section>
+
+<section aria-labelledby="heading-work">
+  <h2 id="heading-work">Work Experience</h2>
+</section>
+
+<section aria-labelledby="heading-references">
+  <h2 id="references">References</h2>
+</section>

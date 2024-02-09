@@ -1,4 +1,8 @@
-export function getPostExcerpt(postContent: string) {
+/**
+ * @param {string} postContent
+ * @returns {string} Trimmed <140 character excerpt from the post
+ */
+export function getPostExcerpt(postContent) {
   let excerpt = postContent.substring(0, 140);
 
   // if we have an empty string just return

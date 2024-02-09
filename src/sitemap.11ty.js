@@ -1,6 +1,8 @@
 class Sitemap {
   data() {
     return {
+      // we don't want to use a layout for this file
+      layout: null,
       permalink: '/sitemap-from-js.xml',
       eleventyExcludeFromCollections: true,
     };
