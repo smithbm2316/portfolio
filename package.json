@@ -12,7 +12,7 @@
     "build": "npm run build:eleventy && npm run build:tailwind",
     "build:tailwind": "tailwindcss -i src/assets/styles.css -o _site/assets/styles.css --minify",
     "build:eleventy": "eleventy",
-    "preview": "http-server -p 2323 _site"
+    "preview": "npm run build && http-server -p 2323 _site"
   },
   "license": "MIT",
   "devDependencies": {
