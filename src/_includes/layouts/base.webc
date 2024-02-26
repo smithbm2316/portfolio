@@ -24,12 +24,18 @@
       webc:keep
     />
     <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+      webc:keep
+    />
+    <link
       rel="icon"
       :href="site.favicon"
       type="image/svg+xml"
     />
   </head>
   <body
+    data-theme="dark"
     class="font-sans bg-slate-900 text-slate-100"
     @raw="content"
   ></body>

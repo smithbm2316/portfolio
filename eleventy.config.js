@@ -1,6 +1,7 @@
 /** @typedef {Partial<import('@11ty/eleventy/src/defaultConfig').defaultConfig>} EleventyConfigReturn */
 /** @typedef {import('@11ty/eleventy/src/UserConfig').default} UserConfig */
 
+import { EleventyRenderPlugin } from '@11ty/eleventy';
 import directoryOutputPlugin from '@11ty/eleventy-plugin-directory-output';
 import pluginWebc from '@11ty/eleventy-plugin-webc';
 
@@ -46,7 +47,12 @@ export default function configureEleventy(eleventyConfig) {
   });
 
   // add webc
-  eleventyConfig.addPlugin(pluginWebc);
+  eleventyConfig.addPlugin(pluginWebc, {
+    components: `${config.dir.input}/_components/**/*.webc`,
+  });
+
+  // add render plugin
+  eleventyConfig.addPlugin(EleventyRenderPlugin);
 
   // add asset folders to passthrough
   // DO NOT add /assets/styles.css, since it will overwrite what our tailwind build process adds to our output folder for us

@@ -1,3 +1,29 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
+
+:root {
+  /* inspiration: https://dribbble.com/shots/22263599-Retro-Apple-Logo */
+  --color-light: #f5edce;
+  --color-dark: #252525;
+  --color-green: #91c483;
+  --color-yellow: #fbb03b;
+  --color-orange: #f78c45;
+  --color-red: #e05b4b;
+  --color-purple: #a696c8;
+  --color-blue: #3c8dad;
+
+  /* inspiration: https://medium.com/@clarale/colors-1-vintage-palettes-for-your-website-3f8bf1ad10d3#4d2a */
+  --fieldtrip-navy: #182335;
+  --fieldtrip-red: #e15546;
+  --fieldtrip-pink: #eeaf9d;
+  --fieldtrip-white: #eae4cc;
+}
+
+body {
+  background-color: var(--color-dark) !important;
+}
+
+*:not(a, pre, code) {
+  color: var(--color-light) !important;
+}

@@ -1,9 +1,18 @@
 ---
 title: Add the content of your blog posts to your Astro RSS feed
-tags: ['astro', 'rss', 'open-web']
 date: 2022-12-09
 showMeTheCode: true
+tags:
+  - astro
+  - rss
+  - open-web
 ---
+# {{ title }}
+
+{% renderTemplate "webc", { tags: tags } %}
+<post-tags :tags="tags"></post-tags>
+{% endrenderTemplate %}
+
 If you haven't seen it yet, [Astro](https://astro.build) is a *delightful* tool for building faster websites. It supports static-site generation (SSG), server-side rendering (SSR), as well as islands architecture for adding small pockets of interactivity to your websites with your frontend Javascript framework of choice.
 
 If you're sitting here wondering *what in the world did any of that just mean?*, don't worry! Astro is approachable to web developers of all skill levels. Whether you've barely started learning HTML and CSS, are a veteran of the web development scene, or are somewhere inbetween like myself, Astro will welcome you with open arms. I recommend you start with [their tutorial here](https://docs.astro.build/en/tutorial/0-introduction/). Their documentation team sets the bar *incredibly high* for what the docs of a modern Javascript framework should look like.
