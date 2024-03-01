@@ -73,12 +73,6 @@ export default function configureEleventy(eleventyConfig) {
     return Array.from(tagsSet).sort();
   });
 
-  // tell eleventy to ignore any markdown files in our blog that have a leading underscore "_" in the filename when we are building for production. Continue to process and show them when in `serve`/`watch` mode for development purposes! This allows us to have any blog posts that should be drafts staying out of our production builds by just adding an underscore to the beginning of the filename.
-  // https://github.com/11ty/eleventy/issues/188#issuecomment-1156986504
-  if (process.env.ELEVENTY_RUN_MODE === 'build') {
-    eleventyConfig.ignores.add(`${config.dir.input}/blog/**/_*.md`);
-  }
-
   // configure the `src/assets` directory to be copied into our build without Eleventy processing the files. This is where all our fonts, images, styles, and other assets will go
   eleventyConfig.addPassthroughCopy(`${config.dir.input}/assets`);
 

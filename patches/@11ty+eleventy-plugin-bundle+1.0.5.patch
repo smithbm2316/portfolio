@@ -1,0 +1,13 @@
+diff --git a/node_modules/@11ty/eleventy-plugin-bundle/eleventy.shortcodes.js b/node_modules/@11ty/eleventy-plugin-bundle/eleventy.shortcodes.js
+index c3d76d9..b56447b 100644
+--- a/node_modules/@11ty/eleventy-plugin-bundle/eleventy.shortcodes.js
++++ b/node_modules/@11ty/eleventy-plugin-bundle/eleventy.shortcodes.js
+@@ -21,7 +21,7 @@ module.exports = function(eleventyConfig, options = {}) {
+ 		// e.g. `css` shortcode to add code to page bundle
+ 		// These shortcode names are not configurable on purpose (for wider plugin compatibility)
+ 		eleventyConfig.addPairedShortcode(name, function addContent(content, bucket, urlOverride) {
+-			let url = urlOverride || this.page.url;
++			let url = urlOverride || this.page?.url;
+ 			managers[name].addToPage(url, content, bucket);
+ 			return "";
+ 		});

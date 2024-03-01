@@ -6,9 +6,10 @@
   "scripts": {
     "debug:dev": "DEBUG=Eleventy* npm run dev",
     "debug:prod": "DEBUG=Eleventy* npm run build",
-    "dev": "eleventy --serve",
+    "dev": "eleventy --incremental --watch --serve",
     "build": "rm -rf _site && eleventy",
-    "preview": "npm run build && http-server -p 2323 _site"
+    "preview": "npm run build && http-server -p 2323 _site",
+    "postinstall": "patch-package"
   },
   "license": "MIT",
   "devDependencies": {
@@ -27,6 +28,7 @@
     "prettier": "^3.2.5"
   },
   "dependencies": {
+    "patch-package": "^8.0.0",
     "zod": "^3.22.4"
   }
 }
