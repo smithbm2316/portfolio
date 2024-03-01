@@ -1,0 +1,11 @@
+<ul webc:if="tags && Array.isArray(tags)">
+  <template
+    webc:nokeep
+    webc:for="tag of tags"
+  >
+    <li
+      webc:if="tag !== 'posts'"
+      @text="tag.trim()"
+    ></li>
+  </template>
+</ul>

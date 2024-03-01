@@ -1,19 +1,19 @@
 # About
 
-<div class='about-image-grid'>
+<div style='display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;'>
   <img
     src='/assets/images/point-reyes-tree.jpeg'
     alt=''
-    class='object-center object-cover aspect-square'
     width='600'
     height='600'
+    style='object-fit: cover; object-position: center; aspect-ratio: 1 / 1;'
   />
   <img
     src='/assets/images/ghiradelli.jpg'
     alt=''
-    class='object-center object-cover aspect-square'
     width='600'
     height='600'
+    style='object-fit: cover; object-position: center; aspect-ratio: 1 / 1;'
   />
 </div>
 
@@ -23,20 +23,20 @@ I grew up in the San Francisco Bay Area for the entirety of my childhood, before
 
 <br />
 
-<div class='about-image-grid'>
+<div style='display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;'>
   <img
     src='/assets/images/golden-hour-grad.jpg'
     alt=''
-    class='object-center object-cover aspect-square'
     width='600'
     height='600'
+    style='object-fit: cover; object-position: center; aspect-ratio: 1 / 1;'
   />
   <img
     src='/assets/images/onyx-with-jonathan.jpg'
     alt=''
-    class='object-center object-cover aspect-square'
     width='600'
     height='600'
+    style='object-fit: cover; object-position: center; aspect-ratio: 1 / 1;'
   />
 </div>
 

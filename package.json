@@ -6,27 +6,27 @@
   "scripts": {
     "debug:dev": "DEBUG=Eleventy* npm run dev",
     "debug:prod": "DEBUG=Eleventy* npm run build",
-    "dev": "concurrently \"npm:dev:*\"",
-    "dev:tailwind": "tailwindcss -i src/assets/styles.css -o _site/assets/styles.css --watch",
-    "dev:eleventy": "eleventy --serve",
-    "build": "npm run build:eleventy && npm run build:tailwind",
-    "build:tailwind": "tailwindcss -i src/assets/styles.css -o _site/assets/styles.css --minify",
-    "build:eleventy": "eleventy",
+    "dev": "eleventy --serve",
+    "build": "rm -rf _site && eleventy",
     "preview": "npm run build && http-server -p 2323 _site"
   },
   "license": "MIT",
   "devDependencies": {
-    "@11ty/eleventy": "3.0.0-alpha.4",
+    "@11ty/eleventy": "^3.0.0-alpha.5",
     "@11ty/eleventy-fetch": "^4.0.0",
     "@11ty/eleventy-img": "^3.1.8",
     "@11ty/eleventy-plugin-directory-output": "^1.0.1",
     "@11ty/eleventy-plugin-rss": "^1.2.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "@11ty/eleventy-plugin-webc": "^0.11.2",
-    "concurrently": "^8.2.2",
+    "@sindresorhus/slugify": "^2.2.1",
+    "eleventy-plugin-validate": "^0.1.2",
     "eslint": "^8.56.0",
     "http-server": "^14.1.1",
-    "prettier": "^3.2.5",
-    "tailwindcss": "^3.4.1"
+    "markdown-it-anchor": "^8.6.7",
+    "prettier": "^3.2.5"
+  },
+  "dependencies": {
+    "zod": "^3.22.4"
   }
 }

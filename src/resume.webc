@@ -3,7 +3,7 @@
 <section aria-labelledby="heading-skills">
   <h2 id="heading-skills">Skills</h2>
 
-  <looper
+  <template
     webc:nokeep
     webc:for="(category, skillsList) in skills"
   >
@@ -12,16 +12,15 @@
       <li
         webc:for="skill of skillsList"
         @text="skill"
-        class="list-disc list-inside"
       ></li>
     </ul>
-  </looper>
+  </template>
 </section>
 
 <section aria-labelledby="heading-projects">
   <h2 id="heading-projects">Projects</h2>
 
-  <looper
+  <template
     webc:nokeep
     webc:for="(project, bulletPoints) in projects"
   >
@@ -30,10 +29,9 @@
       <li
         webc:for="bullet of bulletPoints"
         @text="bullet"
-        class="list-disc list-inside"
       ></li>
     </ul>
-  </looper>
+  </template>
 </section>
 
 <section aria-labelledby="heading-education">

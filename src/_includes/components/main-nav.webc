@@ -1,0 +1,12 @@
+<div
+  webc:root="override"
+  aria-labelledby="article-toc"
+  class="nav"
+>
+  <ul>
+    <li><a href="/">Ben Smith</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/words">Writing</a></li>
+    <li><a href="/uses">Uses</a></li>
+  </ul>
+</div>

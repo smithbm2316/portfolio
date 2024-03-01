@@ -9,7 +9,7 @@
 
     <meta
       name="author"
-      :content="site.author"
+      :content="site.author.name"
     />
     <meta
       name="description"
@@ -19,7 +19,12 @@
     <title @text="site.title"></title>
 
     <link
-      href="/assets/styles.css"
+      href="/assets/styles/index.css"
+      rel="stylesheet"
+      webc:keep
+    />
+    <link
+      href="/assets/styles/prism-theme.css"
       rel="stylesheet"
       webc:keep
     />
@@ -36,7 +41,6 @@
   </head>
   <body
     data-theme="dark"
-    class="font-sans bg-slate-900 text-slate-100"
     @raw="content"
   ></body>
 </html>

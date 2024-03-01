@@ -1,0 +1,45 @@
+:root {
+  /* inspiration: https://dribbble.com/shots/22263599-Retro-Apple-Logo */
+  --color-light: #f5edce;
+  --color-dark: #252525;
+  --color-green: #91c483;
+  --color-yellow: #fbb03b;
+  --color-orange: #f78c45;
+  --color-red: #e05b4b;
+  --color-purple: #a696c8;
+  --color-blue: #3c8dad;
+
+  /* inspiration: https://medium.com/@clarale/colors-1-vintage-palettes-for-your-website-3f8bf1ad10d3#4d2a */
+  --fieldtrip-navy-h: 217;
+  --fieldtrip-navy-s: 38%;
+  --fieldtrip-navy-l: 15%;
+  --fieldtrip-navy: hsl(
+    var(--fieldtrip-navy-h) var(--fieldtrip-navy-s) var(--fieldtrip-navy-l)
+  );
+  --fieldtrip-navy-darker: hsl(
+    var(--fieldtrip-navy-h) var(--fieldtrip-navy-s)
+      calc(var(--fieldtrip-navy-l) - 5%)
+  );
+  --fieldtrip-navy-lighter: hsl(
+    var(--fieldtrip-navy-h) var(--fieldtrip-navy-s)
+      calc(var(--fieldtrip-navy-l) + 5%)
+  );
+
+  --fieldtrip-red: hsl(6, 72%, 58%);
+  --fieldtrip-pink: hsl(13, 70%, 77%);
+  --fieldtrip-white: hsl(48, 42%, 86%);
+}
+
+body {
+  background-color: var(--color-dark);
+  color: var(--color-light);
+}
+
+/* Screen readers only */
+.sr-only {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}

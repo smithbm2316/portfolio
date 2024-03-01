@@ -2,7 +2,6 @@
   <img
     src="/assets/images/profile_pic.jpeg"
     alt="Me!"
-    class="object-center object-cover aspect-square"
     width="1000"
     height="1000"
     loading="eager"
@@ -10,7 +9,7 @@
 
   <div>
     <a href="/">
-      <h1 class="text-3xl font-semibold">Ben Smith</h1>
+      <h1>Ben Smith</h1>
     </a>
 
     <p>

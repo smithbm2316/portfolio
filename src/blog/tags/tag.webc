@@ -1,22 +1,9 @@
----
-pagination:
-  data: collections.postTags
-  size: 1
-  alias: tag
-# https://github.com/11ty/eleventy-plugin-webc/issues/42#issuecomment-1374152043
-# permalink syntax is treated the same in WebC as dynamic attributes (i.e. :href=""). Valid JS works inside of quoted text
-permalink: 'slugify(`/blog/tags/${tag}`)'
----
-
-<h1 @text="tag"></h1>
-<ol>
-  <li
-    class="list-disc list-inside"
-    webc:for="post of collections[tag]"
-  >
+<h1 @text='`Tagged "${tag}"`'></h1>
+<ul>
+  <li webc:for="post of collections[tag]">
     <a
       :href="post.url"
       @text="post.data.title"
     ></a>
   </li>
-</ol>
+</ul>

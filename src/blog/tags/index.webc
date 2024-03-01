@@ -1,10 +1,10 @@
 <h1>Tags</h1>
 
-<ol>
+<ul>
   <li webc:for="tag of collections.postTags">
     <a
       :href="`/blog/tags/${tag}`"
       @text="tag"
     ></a>
   </li>
-</ol>
+</ul>

@@ -1,0 +1,121 @@
+<script webc:setup>
+  let postData = collections.posts.find((post) => post.page.url === page.url);
+  if (!postData) {
+    throw new Error("Couldn't find a matching post for the current page.");
+  }
+  let { data, content, rawInput } = postData;
+
+  // pool all the article headings from the page content into an array so we can create a TOC easily
+  /** @type {string[]} */
+  let headings = [];
+  let matches = rawInput.matchAll(/^#{1,6}\s(?<heading>.*)$/gm);
+  for (let match of matches) {
+    if (match.groups?.heading) {
+      headings.push(match.groups.heading);
+    }
+  }
+</script>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <meta
+      name="author"
+      :content="site.author.name"
+    />
+    <meta
+      name="description"
+      :content="site.description"
+    />
+
+    <title @text="data.title"></title>
+
+    <link
+      href="/assets/styles/index.css"
+      rel="stylesheet"
+      webc:keep
+    />
+    <link
+      href="/assets/styles/prism-theme.css"
+      rel="stylesheet"
+      webc:keep
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+      webc:keep
+    />
+    <link
+      rel="icon"
+      :href="site.favicon"
+      type="image/svg+xml"
+    />
+  </head>
+  <body data-theme="dark">
+    <style webc:keep>
+      main {
+        margin-inline: auto;
+        margin-block: 0;
+      }
+
+      @media (min-width: 90ch) {
+        main {
+          display: grid;
+          grid-template-columns: 16ch 32ch 16ch;
+          grid-template-areas: 'nav article article-toc';
+          width: max-content;
+        }
+
+        main > .nav {
+          height: max-content;
+        }
+
+        .nav {
+          position: sticky;
+          top: 0;
+        }
+
+        .nav:last-of-type {
+          justify-self: end;
+          text-align: right;
+        }
+      }
+    </style>
+
+    <main>
+      <main-nav style="grid-area: nav"></main-nav>
+
+      <div
+        class="nav"
+        style="grid-area: article-toc"
+      >
+        <h3 id="article-toc">Table of Contents</h3>
+        <ul webc:if="headings.length > 0">
+          <li><a href="#top">Return to top</a></li>
+          <li webc:for="heading of headings">
+            <a
+              :href="`#${slugify(heading)}`"
+              @text="heading"
+            ></a>
+          </li>
+        </ul>
+      </div>
+
+      <article
+        id="#top"
+        style="grid-area: article"
+      >
+        <h1 @text="data.title"></h1>
+        <post-tags :@tags="data.tags"></post-tags>
+
+        <section @raw="content"></section>
+      </article>
+    </main>
+  </body>
+</html>

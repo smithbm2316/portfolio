@@ -2,35 +2,35 @@
 override:tags: []
 ---
 
-<!-- TODO: move "/blog" to "/posts", and move "/blog/tags" to "/tags" to simplify url structure and tags overrides -->
+<!-- TODO: move "/blog" to "/posts" or "/words", and move "/blog/tags" to "/tags" to simplify url structure and tags overrides -->
+
+<script webc:setup>
+  let posts = collections.posts.sort((a, b) =>
+    a.data.date < b.data.date ? 1 : -1
+  );
+</script>
 
 <section>
-  <h1 class="text-6xl font-bold">Blog</h1>
+  <h1>Blog</h1>
 
-  <h2 class="text-3xl my-8 font-bold">Latest Posts</h2>
+  <h2>Latest Posts</h2>
   <ul>
-    <looper
-      webc:for="post of collections.posts"
+    <template
       webc:nokeep
+      webc:for="post of posts"
     >
-      <li
-        class="my-4 list-disc list-inside"
-        webc:if="!post.data.draft"
-      >
+      <li>
         <a
           :href="url(post.url)"
           @text="post.data.title"
         ></a>
       </li>
-    </looper>
+    </template>
   </ul>
 
-  <h2 class="text-3xl my-8 font-bold">Tags</h2>
+  <h2>Tags</h2>
   <ul>
-    <li
-      class="my-4 list-disc list-inside"
-      webc:for="tag of collections.postTags"
-    >
+    <li webc:for="tag of collections.postTags">
       <a
         :href="url(`/blog/tags/${tag}`)"
         @text="tag"
