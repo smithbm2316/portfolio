@@ -76,23 +76,39 @@
           height: max-content;
         }
 
-        .nav {
+        .nav,
+        .article-nav {
           position: sticky;
           top: 0;
         }
 
-        .nav:last-of-type {
+        .article-nav {
           justify-self: end;
           text-align: right;
+        }
+
+        /* overrides for picocss until i remove that on the <main-nav> component */
+        .nav > ul {
+          display: block;
+        }
+        .nav li {
+          display: list-item;
+          list-style-type: square !important;
+          padding: 0;
+          margin-bottom: 4.5px;
         }
       }
     </style>
 
     <main>
-      <main-nav style="grid-area: nav"></main-nav>
+      <main-nav
+        class="nav"
+        aria-labelledby="article-toc"
+        style="grid-area: nav"
+      ></main-nav>
 
       <div
-        class="nav"
+        class="article-nav"
         style="grid-area: article-toc"
       >
         <h3 id="article-toc">Table of Contents</h3>

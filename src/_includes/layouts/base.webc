@@ -39,8 +39,10 @@
       type="image/svg+xml"
     />
   </head>
-  <body
-    data-theme="dark"
-    @raw="content"
-  ></body>
+  <body data-theme="dark">
+    <main>
+      <main-nav aria-label="Main navigation"></main-nav>
+      <div @raw="content"></div>
+    </main>
+  </body>
 </html>

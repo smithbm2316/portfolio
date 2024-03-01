@@ -1,20 +1,18 @@
-<main>
-  <div>
-    <a href="/">
-      <h1>Ben Smith</h1>
-    </a>
+<div>
+  <a href="/">
+    <h1>Ben Smith</h1>
+  </a>
 
-    <ul>
-      <li webc:for="link of links.external">
-        <a
-          :href="url(link.url)"
-          rel="noreferrer"
-          target="_blank"
-        >
-          <span @text="link.icon"></span>
-          <span @text="link.title"></span>
-        </a>
-      </li>
-    </ul>
-  </div>
-</main>
+  <ul>
+    <li webc:for="link of links.external">
+      <a
+        :href="url(link.url)"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <span @text="link.icon"></span>
+        <span @text="link.title"></span>
+      </a>
+    </li>
+  </ul>
+</div>
