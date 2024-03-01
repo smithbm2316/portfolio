@@ -14,7 +14,6 @@ import slugify from '@sindresorhus/slugify';
 
 // rest of my eleventy config in the `./config` folder
 import { schemas } from './config/schemas.js';
-import { writeGlobalDts } from './config/globals.js';
 
 /**
  * @param {UserConfig} eleventyConfig - Eleventy configuration object
@@ -107,19 +106,6 @@ export default function configureEleventy(eleventyConfig) {
   eleventyConfig.setServerOptions({
     port: 2323,
     watch: [`${config.dir.output}/assets/styles/**/*.css`],
-  });
-
-  eleventyConfig.on('eleventy.after', async ({ uses: { nodes } }) => {
-    /** @type {string[]} */
-    let collections = [];
-    for (let /** @type {string} */ node of Object.keys(nodes)) {
-      if (node.startsWith('__collection:')) {
-        let collection = node.replace('__collection:', '');
-        collections.push(collection);
-      }
-    }
-
-    await writeGlobalDts(collections);
   });
 
   return config;
