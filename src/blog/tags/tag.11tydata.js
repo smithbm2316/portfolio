@@ -1,4 +1,7 @@
 export default {
+  eleventyImport: {
+    collections: ['posts', 'postTags'],
+  },
   pagination: {
     data: 'collections',
     size: 1,

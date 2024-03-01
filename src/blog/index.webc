@@ -1,5 +1,9 @@
 ---
 override:tags: []
+eleventyImport:
+  collections:
+    - posts
+    - postTags
 ---
 
 <!-- TODO: move "/blog" to "/posts" or "/words", and move "/blog/tags" to "/tags" to simplify url structure and tags overrides -->

@@ -3,7 +3,7 @@
 // 11ty plugins
 import pluginDirectoryOutput from '@11ty/eleventy-plugin-directory-output';
 import { EleventyRenderPlugin as pluginRender } from '@11ty/eleventy';
-// import pluginRSS from '@11ty/eleventy-plugin-rss';
+import pluginRSS from '@11ty/eleventy-plugin-rss';
 import pluginSyntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight';
 import pluginValidate from 'eleventy-plugin-validate';
 import pluginWebc from '@11ty/eleventy-plugin-webc';
@@ -90,7 +90,7 @@ export default function configureEleventy(eleventyConfig) {
 
   eleventyConfig.addPlugin(pluginRender);
 
-  // eleventyConfig.addPlugin(pluginRSS);
+  eleventyConfig.addPlugin(pluginRSS);
 
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
 

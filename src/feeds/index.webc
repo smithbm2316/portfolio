@@ -1,0 +1,29 @@
+---
+eleventyImport:
+  collections:
+    - posts
+---
+<h1>RSS</h1>
+
+<nav aria-labelledby="rss-feeds">
+  <h2 id="rss-feeds">RSS Feeds</h2>
+  <ul>
+    <li><a href="/feeds/rss.xml">RSS</a></li>
+    <li><a href="/feeds/atom.xml">Atom</a></li>
+    <li><a href="/feeds/rss.json">JSON</a></li>
+  </ul>
+</nav>
+
+<section aria-labelledby="#latest-posts">
+  <h2 id="latest-posts">Latest Posts</h2>
+  <ul>
+    <li
+      webc:for="post of collections.posts.reverse()"
+    >
+      <a
+        :href="post.url"
+        @text="post.data.title"
+      ></a>
+    </li>
+  </ul>
+</section>
