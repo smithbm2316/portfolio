@@ -1,3 +1,7 @@
+---
+layout: layouts/base.webc
+---
+
 # Uses
 
 ## Editor

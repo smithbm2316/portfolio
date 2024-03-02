@@ -1,3 +1,7 @@
+---
+layout: layouts/base.webc
+---
+
 <div>
   <a href="/">
     <h1>Ben Smith</h1>

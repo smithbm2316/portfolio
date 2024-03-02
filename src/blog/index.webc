@@ -1,4 +1,5 @@
 ---
+layout: layouts/base.webc
 override:tags: []
 eleventyImport:
   collections:

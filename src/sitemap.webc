@@ -1,7 +1,8 @@
----
-layout: null
-permalink: /sitemap.xml
-eleventyExcludeFromCollections: true
+---js
+{
+  permalink: 'sitemap.xml',
+  eleventyExcludeFromCollections: true,
+}
 ---
 
 <?xml version="1.0" encoding="utf-8"?>

@@ -1,6 +1,9 @@
----
-title: Oops! Not Found
-permalink: 404.html
+---js
+{
+  title: 'Oops! Not Found',
+  permalink: '404.html',
+  layout: 'layouts/base.webc',
+}
 ---
 
 <h1 @text="title"></h1>

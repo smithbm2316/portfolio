@@ -1,3 +1,7 @@
+---
+layout: layouts/base.webc
+---
+
 <section>
   <img
     src="/assets/images/profile_pic.jpeg"

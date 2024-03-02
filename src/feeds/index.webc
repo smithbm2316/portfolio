@@ -1,8 +1,10 @@
 ---
+layout: layouts/base.webc
 eleventyImport:
   collections:
     - posts
 ---
+
 <h1>RSS</h1>
 
 <nav aria-labelledby="rss-feeds">
@@ -17,9 +19,7 @@ eleventyImport:
 <section aria-labelledby="#latest-posts">
   <h2 id="latest-posts">Latest Posts</h2>
   <ul>
-    <li
-      webc:for="post of collections.posts.reverse()"
-    >
+    <li webc:for="post of collections.posts.reverse()">
       <a
         :href="post.url"
         @text="post.data.title"

@@ -1,3 +1,7 @@
+---
+layout: layouts/base.webc
+---
+
 # About
 
 <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;'>
