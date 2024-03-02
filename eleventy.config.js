@@ -1,4 +1,11 @@
-/** @typedef {import('@11ty/eleventy/src/UserConfig').default} UserConfig */
+/**
+ * The config object/instance for Eleventy
+ * @typedef {import('@11ty/eleventy/src/UserConfig').default} EleventyConfig
+ */
+/**
+ * The options object to pass to `eleventy-plugin-validate`
+ * @typedef {Parameters<import('eleventy-plugin-validate').default>[1]} PluginValidateOptions
+ */
 
 // 11ty plugins
 import pluginDirectoryOutput from '@11ty/eleventy-plugin-directory-output';
@@ -16,7 +23,7 @@ import slugify from '@sindresorhus/slugify';
 import { schemas } from './config/schemas.js';
 
 /**
- * @param {UserConfig} eleventyConfig - Eleventy configuration object
+ * @param {EleventyConfig} eleventyConfig
  * @returns {Record<string, unknown>} Final configuration that we give to Eleventy
  */
 export default function configureEleventy(eleventyConfig) {
@@ -87,10 +94,12 @@ export default function configureEleventy(eleventyConfig) {
 
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
 
-  eleventyConfig.addPlugin(pluginValidate, {
+  /** @type {PluginValidateOptions} */
+  let pluginValidateOptions = {
     validator: 'zod',
     schemas,
-  });
+  };
+  eleventyConfig.addPlugin(pluginValidate, pluginValidateOptions);
 
   eleventyConfig.addPlugin(pluginWebc, {
     components: [

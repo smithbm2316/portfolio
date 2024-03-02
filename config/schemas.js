@@ -1,11 +1,7 @@
 import { z } from 'zod';
 
-/**
- * @typedef {Object} EleventySchemas
- * @prop {string[]} collections - What collections to run this schema on
- * @prop {import('zod').ZodSchema} schema - The Zod schema to execute
- */
-/** @type {EleventySchemas[]} */
+/** @typedef {Parameters<import('eleventy-plugin-validate').default>[1]} PluginValidateOptions */
+/** @type {PluginValidateOptions['schemas']} */
 const schemas = [];
 
 // basic frontmatter that all of our blog posts with the `posts` tag should have
