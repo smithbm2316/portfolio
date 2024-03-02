@@ -24,6 +24,7 @@
     "eleventy-plugin-validate": "^0.1.2",
     "eslint": "^8.56.0",
     "http-server": "^14.1.1",
+    "lightningcss": "^1.24.0",
     "markdown-it-anchor": "^8.6.7",
     "prettier": "^3.2.5"
   },

@@ -1,0 +1,8 @@
+@import 'vars.css';
+@import 'utils.css';
+
+h1 {
+  color: red !important;
+  font-weight: 700 !important;
+  font-size: 24rem !important;
+}

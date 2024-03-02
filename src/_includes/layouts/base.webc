@@ -19,7 +19,7 @@
     <title @text="site.title"></title>
 
     <link
-      href="/styles.css"
+      href="/assets/main.css"
       rel="stylesheet"
       webc:keep
     />

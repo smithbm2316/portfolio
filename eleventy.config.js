@@ -20,6 +20,7 @@ import markdownItAnchor from 'markdown-it-anchor';
 import slugify from '@sindresorhus/slugify';
 
 // rest of my eleventy config in the `./config` folder
+import { pluginLightningCSS } from './config/lightningcss.js';
 import { schemas } from './config/schemas.js';
 
 /**
@@ -88,6 +89,23 @@ export default function configureEleventy(eleventyConfig) {
   eleventyConfig.setQuietMode(true);
   eleventyConfig.addPlugin(pluginDirectoryOutput);
 
+  let lightningCSSInputFilename = `${config.dir.input}/${config.dir.includes}/styles/main.css`;
+  /** @type {import('./config/lightningcss').LightningCSSOptions} */
+  let pluginLightningCSSOptions = {
+    outputPath: `${config.dir.input}/assets/main.css`,
+    bundle: {
+      filename: lightningCSSInputFilename,
+    },
+    transform: {
+      filename: lightningCSSInputFilename,
+      minify: process.env.ELEVENTY_RUN_MODE === 'build',
+      drafts: {
+        customMedia: true,
+      },
+    },
+  };
+  eleventyConfig.addPlugin(pluginLightningCSS, pluginLightningCSSOptions);
+
   eleventyConfig.addPlugin(pluginRender);
 
   eleventyConfig.addPlugin(pluginRSS);
@@ -114,7 +132,10 @@ export default function configureEleventy(eleventyConfig) {
 
   eleventyConfig.setServerOptions({
     port: 2323,
-    watch: [`${config.dir.input}/css/**/*.css`],
+    watch: [
+      `${config.dir.input}/assets/styles.css`,
+      // `${config.dir.input}/css/**/*.css`
+    ],
   });
 
   return config;
