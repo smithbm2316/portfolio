@@ -105,7 +105,7 @@ export default function configureEleventy(eleventyConfig) {
 
   eleventyConfig.setServerOptions({
     port: 2323,
-    watch: [`${config.dir.output}/assets/styles/**/*.css`],
+    watch: [`${config.dir.input}/css/**/*.css`],
   });
 
   return config;

@@ -37,12 +37,12 @@
     <title @text="data.title"></title>
 
     <link
-      href="/assets/styles/index.css"
+      href="/styles.css"
       rel="stylesheet"
       webc:keep
     />
     <link
-      href="/assets/styles/prism-theme.css"
+      href="/assets/prism-theme.css"
       rel="stylesheet"
       webc:keep
     />

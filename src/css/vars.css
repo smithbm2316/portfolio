@@ -34,12 +34,3 @@ body {
   background-color: var(--color-dark);
   color: var(--color-light);
 }
-
-/* Screen readers only */
-.sr-only {
-  position: absolute;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-}
