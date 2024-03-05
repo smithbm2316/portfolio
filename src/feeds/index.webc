@@ -10,9 +10,9 @@ eleventyImport:
 <nav aria-labelledby="rss-feeds">
   <h2 id="rss-feeds">RSS Feeds</h2>
   <ul>
-    <li><a href="/feeds/rss.xml">RSS</a></li>
-    <li><a href="/feeds/atom.xml">Atom</a></li>
-    <li><a href="/feeds/rss.json">JSON</a></li>
+    <li><a href="/feeds/rss.njk">RSS</a></li>
+    <li><a href="/feeds/atom.njk">Atom</a></li>
+    <li><a href="/feeds/json.njk">JSON</a></li>
   </ul>
 </nav>
 

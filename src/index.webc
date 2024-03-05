@@ -1,5 +1,12 @@
----
-layout: layouts/base.webc
+---js
+{
+  layout: 'layouts/base.webc',
+  socials: [
+    { text: 'GitHub', href: 'https://github.com/smithbm2316' },
+    { text: 'LinkedIn', href: 'https://www.linkedin.com/in/smithbm2316' },
+    { text: 'Email', href: 'mailto:bsmithdev@mailbox.org' },
+  ]
+}
 ---
 
 <section>
@@ -22,14 +29,12 @@ layout: layouts/base.webc
     </p>
 
     <ul>
-      <li>
-        <a href="https://github.com/smithbm2316">GitHub</a>
-      </li>
-      <li>
-        <a href="https://www.linkedin.com/in/smithbm2316">LinkedIn</a>
-      </li>
-      <li>
-        <a href="mailto:bsmithdev@mailbox.org">Email</a>
+      <li webc:for="link of socials">
+        <a
+          rel="noreferrer"
+          :href="link.href"
+          @text="link.text"
+        ></a>
       </li>
     </ul>
   </div>

@@ -9,7 +9,10 @@
 
 // 11ty plugins
 import pluginDirectoryOutput from '@11ty/eleventy-plugin-directory-output';
-import { EleventyRenderPlugin as pluginRender } from '@11ty/eleventy';
+import {
+  EleventyRenderPlugin,
+  InputPathToUrlTransformPlugin,
+} from '@11ty/eleventy';
 import pluginRSS from '@11ty/eleventy-plugin-rss';
 import pluginSyntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight';
 import pluginValidate from 'eleventy-plugin-validate';
@@ -86,6 +89,9 @@ export default function configureEleventy(eleventyConfig) {
   /*
    * PLUGINS
    */
+  eleventyConfig.addPlugin(EleventyRenderPlugin);
+  eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
+
   eleventyConfig.setQuietMode(true);
   eleventyConfig.addPlugin(pluginDirectoryOutput);
 
@@ -106,10 +112,7 @@ export default function configureEleventy(eleventyConfig) {
   };
   eleventyConfig.addPlugin(pluginLightningCSS, pluginLightningCSSOptions);
 
-  eleventyConfig.addPlugin(pluginRender);
-
   eleventyConfig.addPlugin(pluginRSS);
-
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
 
   /** @type {PluginValidateOptions} */
@@ -122,7 +125,6 @@ export default function configureEleventy(eleventyConfig) {
   eleventyConfig.addPlugin(pluginWebc, {
     components: [
       // any `.webc` files found in the top-level of our `includes` directory or in the `components` directory inside of our `includes` directory will be processed as global webc components.
-      `${config.dir.input}/${config.dir.includes}/*.webc`,
       `${config.dir.input}/${config.dir.includes}/components/*.webc`,
       // include <syntax-highlight> web component from 11ty plugin
       'npm:@11ty/eleventy-plugin-syntaxhighlight/*.webc',
