@@ -57,21 +57,20 @@ layout: layouts/base-html.webc
       display: grid;
       grid-template-columns: 1fr 32ch 1fr;
       grid-template-areas: 'nav article article-toc';
-    }
-
-    main > .nav {
-      height: max-content;
+      column-gap: 2rem;
     }
 
     .nav,
     .article-nav {
+      height: max-content;
       position: sticky;
       top: 0;
+      padding-block-start: 15%;
+      margin-block-start: 10%;
     }
 
     .article-nav {
       justify-self: end;
-      text-align: right;
     }
   }
 </style>

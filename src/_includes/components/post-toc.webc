@@ -1,0 +1,30 @@
+<details>
+  <summary id="article-toc-heading">Table of Contents</summary>
+  <ul webc:if="headings.length > 0">
+    <li><a href="#top">Return to top</a></li>
+    <li webc:for="heading of headings">
+      <a
+        :href="`#${slugify(heading)}`"
+        @text="heading"
+      ></a>
+    </li>
+  </ul>
+</details>
+
+<script webc:bucket="defer">
+  window.customElements.define(
+    'post-toc',
+    class PostTOCElement extends HTMLElement {
+      connectedCallback() {
+        if (window.innerWidth < 540) {
+          return;
+        }
+        let detailsElement = this.querySelector(':scope details');
+        if (!detailsElement) {
+          return;
+        }
+        detailsElement.open = true;
+      }
+    }
+  );
+</script>
