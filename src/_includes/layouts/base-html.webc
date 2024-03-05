@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <meta
+      name="author"
+      :content="site.author.name"
+    />
+    <meta
+      name="description"
+      :content="site.description"
+    />
+
+    <title @text="site.title"></title>
+
+    <link
+      href="/assets/main.css"
+      rel="stylesheet"
+      webc:keep
+    />
+    <link
+      href="/assets/prism-theme.css"
+      rel="stylesheet"
+      webc:keep
+    />
+    <link
+      rel="icon"
+      :href="site.favicon"
+      type="image/svg+xml"
+    />
+
+    <style
+      @raw="getBundle('css')"
+      webc:keep
+    ></style>
+    <script
+      @raw="getBundle('js')"
+      defer
+      webc:keep
+    ></script>
+
+    <script type="module">
+      if (!window.CSSPropertyRule) {
+        document.documentElement.classList.add('atproperty-fallback');
+      }
+    </script>
+  </head>
+
+  <body>
+    <template
+      webc:nokeep
+      @raw="content"
+    ></template>
+
+    <style
+      @raw="getBundle('css', 'defer')"
+      data-bundle="defer"
+      webc:keep
+    ></style>
+    <script
+      @raw="getBundle('js', 'defer')"
+      data-bundle="defer"
+      defer
+      webc:keep
+    ></script>
+  </body>
+</html>

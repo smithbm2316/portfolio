@@ -1,48 +1,8 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+---
+layout: layouts/base-html.webc
+---
 
-    <meta
-      name="author"
-      :content="site.author.name"
-    />
-    <meta
-      name="description"
-      :content="site.description"
-    />
-
-    <title @text="site.title"></title>
-
-    <link
-      href="/assets/main.css"
-      rel="stylesheet"
-      webc:keep
-    />
-    <link
-      href="/assets/prism-theme.css"
-      rel="stylesheet"
-      webc:keep
-    />
-    <link
-      rel="icon"
-      :href="site.favicon"
-      type="image/svg+xml"
-    />
-    <script type="module">
-      if (!window.CSSPropertyRule) {
-        document.documentElement.classList.add('atproperty-fallback');
-      }
-    </script>
-  </head>
-  <body data-theme="dark">
-    <main>
-      <main-nav aria-label="Main navigation"></main-nav>
-      <div @raw="content"></div>
-    </main>
-  </body>
-</html>
+<main>
+  <main-nav aria-label="Main navigation"></main-nav>
+  <div @raw="content"></div>
+</main>

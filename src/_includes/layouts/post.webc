@@ -1,3 +1,7 @@
+---
+layout: layouts/base-html.webc
+---
+
 <script webc:setup>
   let postData = collections.posts.find((post) => post.page.url === page.url);
   if (!postData) {
@@ -16,122 +20,58 @@
   }
 </script>
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+<div>
+  <main>
+    <main-nav
+      class="nav"
+      aria-labelledby="article-toc-heading"
+      style="grid-area: nav"
+    ></main-nav>
 
-    <meta
-      name="author"
-      :content="site.author.name"
-    />
-    <meta
-      name="description"
-      :content="site.description"
-    />
+    <post-toc
+      class="article-nav"
+      style="grid-area: article-toc"
+      :@headings="headings"
+    ></post-toc>
 
-    <title @text="data.title"></title>
+    <article
+      id="#top"
+      style="grid-area: article"
+    >
+      <h1 @text="data.title"></h1>
+      <post-tags :@tags="data.tags"></post-tags>
 
-    <link
-      href="/assets/main.css"
-      rel="stylesheet"
-      webc:keep
-    />
-    <link
-      href="/assets/prism-theme.css"
-      rel="stylesheet"
-      webc:keep
-    />
-    <link
-      rel="icon"
-      :href="site.favicon"
-      type="image/svg+xml"
-    />
-    <script type="module">
-      if (!window.CSSPropertyRule) {
-        document.documentElement.classList.add('atproperty-fallback');
-      }
-    </script>
-  </head>
-  <body data-theme="dark">
-    <style webc:keep>
-      main {
-        margin-inline: auto;
-        margin-block: 0;
-      }
+      <section @raw="content"></section>
+    </article>
+  </main>
+</div>
 
-      @media (min-width: 90ch) {
-        main {
-          display: grid;
-          grid-template-columns: 16ch 32ch 16ch;
-          grid-template-areas: 'nav article article-toc';
-          width: max-content;
-        }
+<style webc:scoped>
+  main {
+    margin-inline: auto;
+    margin-block: 0;
+  }
 
-        main > .nav {
-          height: max-content;
-        }
+  @media (min-width: 540px) {
+    main {
+      display: grid;
+      grid-template-columns: 1fr 32ch 1fr;
+      grid-template-areas: 'nav article article-toc';
+    }
 
-        .nav,
-        .article-nav {
-          position: sticky;
-          top: 0;
-        }
+    main > .nav {
+      height: max-content;
+    }
 
-        .article-nav {
-          justify-self: end;
-          text-align: right;
-        }
+    .nav,
+    .article-nav {
+      position: sticky;
+      top: 0;
+    }
 
-        /* overrides for picocss until i remove that on the <main-nav> component */
-        .nav > ul {
-          display: block;
-        }
-        .nav li {
-          display: list-item;
-          list-style-type: square !important;
-          padding: 0;
-          margin-bottom: 4.5px;
-        }
-      }
-    </style>
-
-    <main>
-      <main-nav
-        class="nav"
-        aria-labelledby="article-toc"
-        style="grid-area: nav"
-      ></main-nav>
-
-      <div
-        class="article-nav"
-        style="grid-area: article-toc"
-      >
-        <h3 id="article-toc">Table of Contents</h3>
-        <ul webc:if="headings.length > 0">
-          <li><a href="#top">Return to top</a></li>
-          <li webc:for="heading of headings">
-            <a
-              :href="`#${slugify(heading)}`"
-              @text="heading"
-            ></a>
-          </li>
-        </ul>
-      </div>
-
-      <article
-        id="#top"
-        style="grid-area: article"
-      >
-        <h1 @text="data.title"></h1>
-        <post-tags :@tags="data.tags"></post-tags>
-
-        <section @raw="content"></section>
-      </article>
-    </main>
-  </body>
-</html>
+    .article-nav {
+      justify-self: end;
+      text-align: right;
+    }
+  }
+</style>
