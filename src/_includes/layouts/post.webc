@@ -47,15 +47,15 @@
       webc:keep
     />
     <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-      webc:keep
-    />
-    <link
       rel="icon"
       :href="site.favicon"
       type="image/svg+xml"
     />
+    <script type="module">
+      if (!window.CSSPropertyRule) {
+        document.documentElement.classList.add('atproperty-fallback');
+      }
+    </script>
   </head>
   <body data-theme="dark">
     <style webc:keep>
