@@ -92,7 +92,7 @@ export default function configureEleventy(eleventyConfig) {
   let lightningCSSInputFilename = `${config.dir.input}/${config.dir.includes}/styles/main.css`;
   /** @type {import('./config/lightningcss').LightningCSSOptions} */
   let pluginLightningCSSOptions = {
-    outputPath: `${config.dir.input}/assets/main.css`,
+    outputPath: `${config.dir.output}/assets/main.css`,
     bundle: {
       filename: lightningCSSInputFilename,
     },
