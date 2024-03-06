@@ -21,17 +21,17 @@ Before we cover the implementation though, let's take a moment to talk about [As
 
 Now you might be asking yourself *why would you even want* the content of your post to be included in your feed? For many users simply having the title and a short description of your post is enough. Since RSS is my favorite way to consume blog posts and other forms of content, I prefer feeds that include the content of the post so that I can read it from the comfort of my favorite RSS reader. I particularly love using [Feedbin](https://feedbin.com), which has a nice minimal styling to it as well as syntax highlighting for HTML `<code>` blocks.
 
-### A brief love letter to RSS
+## A brief love letter to RSS
 
 RSS is a widely celebrated tenant of the [Open Web](https://www.w3.org/wiki/Open_Web_Platform) and [Indie Web](https://indieweb.org/). The ability to modify the content of any webpage that you visit inside your browser with custom Javascript functionality or CSS styles is one of my favorite parts of being a web developer and building applications for the web. If a website does not support dark mode, I can choose to inject custom CSS onto the page in order to make whatever site I’m reading at the moment more pleasing to my eye. The same is true for the blog posts that I subscribe to in my RSS reader. The ability to *choose exactly what feeds I subscribe to* is the other main feature of RSS that brings me so much joy. Instead of using a product like Twitter or Facebook that have algorithms *designed* to recommend and curate content for me, I'm able to control *exactly* what feeds, content creators, and other media I subscribe to in my RSS reader.
 
-### Extending the RSS v2.0 specification
+## Extending the RSS v2.0 specification
 
 Now let me circle back to the actual topic of this post. Some of you more familiar with the RSS spec might be wondering why I don’t just inject the full post content into the `<description>` tag, since that is part of the RSS v2.0 standard and has wide support by many RSS readers. From the reading that I’ve done from [the people who maintain the RSS spec](https://www.rssboard.org/rss-specification#hrelementsOfLtitemgt), they recommend to avoid this. The descriptions are supposed to be used for a short piece of text that is either an excerpt from the post or description of the post's content. In addition to that, I still would like to be able to have the ability to add my own handwritten descriptions for longer posts that would be well-served by a summary. Luckily for us the [RSS spec maintainers encourage extending the spec](https://www.rssboard.org/rss-specification#extendingRss) to fit the use cases that different developers and users might have. The extension that I ended up using seems to be well-supported by many feed readers.
 
 The way that we can extend the specifications is by adding some metadata for a “namespace”. This allows a RSS feed to give feed readers extra instructions on how to parse a non-standard tag. In the code snippets that I will show below, you’ll see the namespace that is attached to my RSS feed in order to support the [new `<content>` tag](https://www.rssboard.org/rss-profile#namespace-elements-content). The `<content:encoded>` tag expects to contain valid HTML, not just raw text. This gives feed readers and the end-user/consumer of the content more flexibility to style their content how they see fit.
 
-### Show me the code!
+## Show me the code!
 
 First, let's take a look at the full example that I wrote for my own personal site before I
 upstreamed the implementation to the `@astrojs/rss` package:
