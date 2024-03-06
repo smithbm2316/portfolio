@@ -2,18 +2,19 @@ import { bundle, transform } from 'lightningcss';
 
 /** @typedef {import('@11ty/eleventy/src/UserConfig').default} EleventyConfig */
 /**
- * @typedef {Object} LightningCSSOptions
+ * @typedef {Object} LightningCSSPluginOptions
  * @prop {string} entryPath - The css file to be used as your main entrypoint
  * @prop {Omit<import('lightningcss').BundleOptions<{}>, 'filename'>=} bundle - options to pass to the `bundle()` process
  * @prop {Omit<import('lightningcss').TransformOptions<{}>, 'code' | 'filename'>=} transform - options to pass to the `transform()` process
+ * @prop {Record<string, any>=} webcPluginOptions See {@link https://www.11ty.dev/docs/languages/webc/#installation WebC Docs} for the configuration properties defined by the 11ty WebC plugin
  * @prop {boolean=} [debug=false] an optional value to turn on debug output for the plugin
  */
 
 /**
  * @param {EleventyConfig} eleventyConfig The eleventy config instance
- * @param {LightningCSSOptions} options Customization options for this plugin
+ * @param {LightningCSSPluginOptions} options Customization options for this plugin
  */
-export function pluginLightningCSS(
+export async function pluginLightningCSS(
   eleventyConfig,
   options = {
     debug: false,
@@ -95,37 +96,49 @@ export function pluginLightningCSS(
     },
   });
 
-  eleventyConfig.addFilter(
-    'lightningCSS',
+  if (options.webcPluginOptions !== undefined) {
+    const { default: pluginWebC } = await import('@11ty/eleventy-plugin-webc');
     /**
-     * @param {string} input the content to parse with lightningCSS
-     * @returns {string} CSS parsed with lightningCSS `transform`
+     * @param {any} content
+     * @returns {Promise<string>}
      */
-    (input) => {
-      try {
-        debug('Processing content through lightningCSS filter');
-        if (typeof input !== 'string') {
-          throw new Error(
-            `Content passed to the \`lightningCSS\` filter was not of type "string", it was type "${typeof input}" instead.`
-          );
-        }
-
-        // which we than pump through the transform pipeline
-        debug('Transforming CSS...');
-        let { code: transformedCSS } = transform({
-          ...options.transform,
-          filename: 'lightningCSS filter',
-          code: Buffer.from(input),
-        });
-        debug('CSS transformed successfully');
-
-        return transformedCSS.toString();
-      } catch (error) {
-        console.error(
-          '[eleventy-plugin-lightningcss] There was an error processing your CSS with the `lightningCSS` filter.'
-        );
-        console.error(error);
+    // @ts-expect-error inline function definition is fine, as we aren't compiling to ES3/ES5 like the error mentions. This plugin is for modern Javascript.
+    async function processWebCBundles(content) {
+      debug('Processing WebC bundles through Lightning CSS');
+      if (this.type !== 'css') {
+        debug("Skipping this bundle since it's not a CSS file.");
+        return content;
       }
+
+      debug('Transforming CSS...');
+      let { code: transformedCSS } = transform({
+        ...options.transform,
+        filename: 'webc-bundle',
+        code: Buffer.from(content),
+      });
+      debug('CSS transformed successfully');
+
+      return transformedCSS.toString();
     }
-  );
+
+    // if the user hasn't defined any bundler plugin transforms, create the necessary config and add our transform
+    if (!options.webcPluginOptions.bundlePluginOptions) {
+      options.webcPluginOptions.bundlePluginOptions = {
+        transforms: [processWebCBundles],
+      };
+    } else if (
+      !Array.isArray(options.webcPluginOptions.bundlePluginOptions.transforms)
+    ) {
+      options.webcPluginOptions.bundlePluginOptions.transforms = [
+        processWebCBundles,
+      ];
+    } // otherwise extend their transforms with ours
+    else {
+      options.webcPluginOptions.bundlePluginOptions.transforms.push(
+        processWebCBundles
+      );
+    }
+
+    eleventyConfig.addPlugin(pluginWebC, options.webcPluginOptions);
+  }
 }

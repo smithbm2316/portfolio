@@ -21,6 +21,7 @@
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "@11ty/eleventy-plugin-webc": "^0.11.2",
     "@sindresorhus/slugify": "^2.2.1",
+    "browserslist": "^4.23.0",
     "eleventy-plugin-validate": "^0.1.2",
     "eslint": "^8.56.0",
     "http-server": "^14.1.1",

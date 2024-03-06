@@ -19,6 +19,8 @@ import pluginValidate from 'eleventy-plugin-validate';
 import pluginWebc from '@11ty/eleventy-plugin-webc';
 
 // dependencies
+import browserslist from 'browserslist';
+import { browserslistToTargets } from 'lightningcss';
 import markdownItAnchor from 'markdown-it-anchor';
 import slugify from '@sindresorhus/slugify';
 
@@ -111,14 +113,23 @@ export default function configureEleventy(eleventyConfig) {
   eleventyConfig.setQuietMode(true);
   eleventyConfig.addPlugin(pluginDirectoryOutput);
 
-  /** @type {import('./config/lightningcss').LightningCSSOptions} */
+  /** @type {import('./config/lightningcss').LightningCSSPluginOptions} */
   let pluginLightningCSSOptions = {
     entryPath: `${config.dir.input}/styles/main.css`,
     transform: {
+      targets: browserslistToTargets(browserslist('> 0.5% or last 2 versions')),
       minify: process.env.ELEVENTY_RUN_MODE === 'build',
       drafts: {
         customMedia: true,
       },
+    },
+    webcPluginOptions: {
+      components: [
+        // any `.webc` files found in the top-level of our `includes` directory or in the `components` directory inside of our `includes` directory will be processed as global webc components.
+        `${config.dir.input}/${config.dir.includes}/components/*.webc`,
+        // include <syntax-highlight> web component from 11ty plugin
+        'npm:@11ty/eleventy-plugin-syntaxhighlight/*.webc',
+      ],
     },
   };
   eleventyConfig.addPlugin(pluginLightningCSS, pluginLightningCSSOptions);
@@ -132,15 +143,6 @@ export default function configureEleventy(eleventyConfig) {
     schemas,
   };
   eleventyConfig.addPlugin(pluginValidate, pluginValidateOptions);
-
-  eleventyConfig.addPlugin(pluginWebc, {
-    components: [
-      // any `.webc` files found in the top-level of our `includes` directory or in the `components` directory inside of our `includes` directory will be processed as global webc components.
-      `${config.dir.input}/${config.dir.includes}/components/*.webc`,
-      // include <syntax-highlight> web component from 11ty plugin
-      'npm:@11ty/eleventy-plugin-syntaxhighlight/*.webc',
-    ],
-  });
   /* END PLUGINS */
 
   eleventyConfig.setServerOptions({
