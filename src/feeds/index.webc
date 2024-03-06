@@ -20,10 +20,7 @@ eleventyImport:
   <h2 id="latest-posts">Latest Posts</h2>
   <ul>
     <li webc:for="post of collections.posts.reverse()">
-      <a
-        :href="post.url"
-        @text="post.data.title"
-      ></a>
+      <a :href="post.url" @text="post.data.title"></a>
     </li>
   </ul>
 </section>

@@ -22,6 +22,7 @@
 - [simple ways to make content look good](https://set.studio/some-simple-ways-to-make-content-look-good/)
 - [the ideal viewport doesn't exist](https://viewports.fyi/)
 - [joining the indieweb](https://blog.rubenwardy.com/2023/10/10/hello-indieweb/)
+- [optimizing images with 11ty & WebC](https://www.robincussol.com/optimize-your-img-tags-with-eleventy-image-and-webc/)
 
 ## webc
 

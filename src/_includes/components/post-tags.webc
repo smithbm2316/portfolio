@@ -3,9 +3,6 @@
     webc:nokeep
     webc:for="tag of tags"
   >
-    <li
-      webc:if="tag !== 'posts'"
-      @text="tag.trim()"
-    ></li>
+    <li webc:if="tag !== 'posts'" @text="tag.trim()"></li>
   </template>
 </ul>

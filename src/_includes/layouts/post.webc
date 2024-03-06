@@ -22,23 +22,12 @@ loadPrismCSS: true
 </script>
 
 <div>
-  <main>
-    <main-nav
-      class="nav"
-      aria-labelledby="article-toc-heading"
-      style="grid-area: nav"
-    ></main-nav>
+  <main id="#top">
+    <main-nav class="nav" aria-labelledby="article-toc-heading" style="grid-area: nav"></main-nav>
 
-    <post-toc
-      class="article-nav"
-      style="grid-area: article-toc"
-      :@headings="headings"
-    ></post-toc>
+    <post-toc class="article-nav" style="grid-area: article-toc" :@headings="headings"></post-toc>
 
-    <article
-      id="#top"
-      style="grid-area: article"
-    >
+    <article style="grid-area: article">
       <h1 @text="data.title"></h1>
       <post-tags :@tags="data.tags"></post-tags>
 

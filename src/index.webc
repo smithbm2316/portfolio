@@ -10,13 +10,7 @@
 ---
 
 <section>
-  <img
-    src="/assets/images/profile_pic.jpeg"
-    alt="Me!"
-    width="1000"
-    height="1000"
-    loading="eager"
-  />
+  <img src="/assets/images/profile_pic.jpeg" alt="Me!" width="1000" height="1000" loading="eager">
 
   <div>
     <a href="/">
@@ -30,11 +24,7 @@
 
     <ul>
       <li webc:for="link of socials">
-        <a
-          rel="noreferrer"
-          :href="link.href"
-          @text="link.text"
-        ></a>
+        <a rel="noreferrer" :href="link.href" @text="link.text"></a>
       </li>
     </ul>
   </div>

@@ -9,10 +9,7 @@ layout: layouts/base.webc
 
   <ul>
     <li webc:for="link of links.external">
-      <a
-        :href="url(link.url)"
-        rel="noreferrer"
-      >
+      <a :href="url(link.url)" rel="noreferrer">
         <span @text="link.icon"></span>
         <span @text="link.title"></span>
       </a>

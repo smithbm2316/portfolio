@@ -25,10 +25,7 @@ eleventyImport:
       webc:for="post of posts"
     >
       <li>
-        <a
-          :href="url(post.url)"
-          @text="post.data.title"
-        ></a>
+        <a :href="url(post.url)" @text="post.data.title"></a>
       </li>
     </template>
   </ul>
@@ -36,10 +33,7 @@ eleventyImport:
   <h2>Tags</h2>
   <ul>
     <li webc:for="tag of collections.postTags">
-      <a
-        :href="url(`/blog/tags/${tag}`)"
-        @text="tag"
-      ></a>
+      <a :href="url(`/blog/tags/${tag}`)" @text="tag"></a>
     </li>
   </ul>
 </section>

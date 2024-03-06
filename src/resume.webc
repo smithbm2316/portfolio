@@ -13,10 +13,7 @@ layout: layouts/base.webc
   >
     <h3 @text="category"></h3>
     <ul>
-      <li
-        webc:for="skill of skillsList"
-        @text="skill"
-      ></li>
+      <li webc:for="skill of skillsList" @text="skill"></li>
     </ul>
   </template>
 </section>
@@ -30,10 +27,7 @@ layout: layouts/base.webc
   >
     <h3 @text="project"></h3>
     <ul>
-      <li
-        webc:for="bullet of bulletPoints"
-        @text="bullet"
-      ></li>
+      <li webc:for="bullet of bulletPoints" @text="bullet"></li>
     </ul>
   </template>
 </section>

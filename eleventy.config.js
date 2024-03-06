@@ -84,6 +84,7 @@ export default function configureEleventy(eleventyConfig) {
   });
 
   // configure the `src/assets` directory to be copied into our build without Eleventy processing the files. This is where all our fonts, images, styles, and other assets will go
+  eleventyConfig.setServerPassthroughCopyBehavior('passthrough');
   eleventyConfig.addPassthroughCopy(`${config.dir.input}/assets`);
 
   /*

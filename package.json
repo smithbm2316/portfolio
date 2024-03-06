@@ -6,7 +6,7 @@
   "scripts": {
     "debug:dev": "DEBUG=Eleventy* npm run dev",
     "debug:prod": "DEBUG=Eleventy* npm run build",
-    "dev": "eleventy --incremental --watch --serve",
+    "dev": "eleventy --watch --serve",
     "build": "rm -rf _site && eleventy",
     "preview": "npm run build && http-server -p 2323 _site",
     "postinstall": "patch-package"

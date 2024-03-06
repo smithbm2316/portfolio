@@ -107,11 +107,11 @@ export const get = () =>
   });
 ```
 
-<br />
+<br>
 
 Now let's drastically simplify that with the new updates to the `@astrojs/rss` post here:
 
-<br />
+<br>
 
 ```typescript
 // src/pages/feed.xml.ts
@@ -140,6 +140,6 @@ export const get = () => rss({
 });
 ```
 
-<br />
+<br>
 
 Thanks for reading! If this post was helpful, please let me know on [Twitter](https://twitter.com/smithbm2316), I'd love to hear any feedback you might have.
