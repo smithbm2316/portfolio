@@ -89,9 +89,43 @@ export function pluginLightningCSS(
         };
       } catch (_err) {
         console.error(
-          '[eleventy-plugin-lightningcss] There was an error processing your CSS.'
+          '[eleventy-plugin-lightningcss] There was an error processing your CSS template.'
         );
       }
     },
   });
+
+  eleventyConfig.addFilter(
+    'lightningCSS',
+    /**
+     * @param {string} input the content to parse with lightningCSS
+     * @returns {string} CSS parsed with lightningCSS `transform`
+     */
+    (input) => {
+      try {
+        debug('Processing content through lightningCSS filter');
+        if (typeof input !== 'string') {
+          throw new Error(
+            `Content passed to the \`lightningCSS\` filter was not of type "string", it was type "${typeof input}" instead.`
+          );
+        }
+
+        // which we than pump through the transform pipeline
+        debug('Transforming CSS...');
+        let { code: transformedCSS } = transform({
+          ...options.transform,
+          filename: 'lightningCSS filter',
+          code: Buffer.from(input),
+        });
+        debug('CSS transformed successfully');
+
+        return transformedCSS.toString();
+      } catch (error) {
+        console.error(
+          '[eleventy-plugin-lightningcss] There was an error processing your CSS with the `lightningCSS` filter.'
+        );
+        console.error(error);
+      }
+    }
+  );
 }
