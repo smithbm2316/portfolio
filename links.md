@@ -23,6 +23,10 @@
 - [the ideal viewport doesn't exist](https://viewports.fyi/)
 - [joining the indieweb](https://blog.rubenwardy.com/2023/10/10/hello-indieweb/)
 - [optimizing images with 11ty & WebC](https://www.robincussol.com/optimize-your-img-tags-with-eleventy-image-and-webc/)
+- [My notes on eleventy webc components](https://levimcg.com/blog/my-notes-on-eleventy-webc-components/)
+- [Understanding WebC Features and Concepts | 11ty Rocks!](https://11ty.rocks/posts/understanding-webc-features-and-concepts/)
+- [WebC scoped styles className applied to every element · Issue #18 · 11ty/eleventy-plugin-webc](https://github.com/11ty/eleventy-plugin-webc/issues/18)
+- [CSS and JavaScript as first-class citizens in Eleventy — Vadim Makeev](https://pepelsbey.dev/articles/eleventy-css-js/)
 
 ## webc
 
