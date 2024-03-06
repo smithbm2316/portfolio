@@ -29,6 +29,7 @@ loadPrismCSS: true
 
     <article style="grid-area: article">
       <h1 @text="data.title"></h1>
+      <time :datetime="machineDate(page.date)" @text="humanDate(page.date)"></time>
       <post-tags :@tags="data.tags"></post-tags>
 
       <section @raw="content"></section>

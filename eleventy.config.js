@@ -83,6 +83,21 @@ export default function configureEleventy(eleventyConfig) {
     return Array.from(tagsSet).sort();
   });
 
+  // datetime helpers
+  // https://danabyerly.com/articles/time-is-on-your-side/
+  eleventyConfig.addFilter('humanDate', (inputDate) => {
+    return new Intl.DateTimeFormat('en-US', {
+      dateStyle: 'full',
+      timeZone: 'UTC',
+    }).format(new Date(inputDate));
+  });
+  eleventyConfig.addFilter('machineDate', (inputDate) => {
+    return new Date(inputDate).toISOString();
+  });
+  eleventyConfig.addFilter('machineDatetime', (inputDate) => {
+    return new Date(inputDate).toISOString();
+  });
+
   // configure the `src/assets` directory to be copied into our build without Eleventy processing the files. This is where all our fonts, images, styles, and other assets will go
   eleventyConfig.setServerPassthroughCopyBehavior('passthrough');
   eleventyConfig.addPassthroughCopy(`${config.dir.input}/assets`);
