@@ -41,7 +41,7 @@ export default function configureEleventy(eleventyConfig) {
     },
     markdownTemplateEngine: 'njk',
     htmlTemplateEngine: 'njk',
-    templateFormats: ['html', 'md', 'njk', '11ty.js', 'webc'],
+    templateFormats: ['html', 'md', 'njk', '11ty.js', 'webc', 'css'],
   };
 
   // enable markdown headings getting turned into links automatically, using the same `slugify` function on the heading names as eleventy provides globally from `@sindresorhus/slugify`
@@ -111,15 +111,10 @@ export default function configureEleventy(eleventyConfig) {
   eleventyConfig.setQuietMode(true);
   eleventyConfig.addPlugin(pluginDirectoryOutput);
 
-  let lightningCSSInputFilename = `${config.dir.input}/${config.dir.includes}/styles/main.css`;
   /** @type {import('./config/lightningcss').LightningCSSOptions} */
   let pluginLightningCSSOptions = {
-    outputPath: `${config.dir.output}/assets/main.css`,
-    bundle: {
-      filename: lightningCSSInputFilename,
-    },
+    entryPath: `${config.dir.input}/styles/main.css`,
     transform: {
-      filename: lightningCSSInputFilename,
       minify: process.env.ELEVENTY_RUN_MODE === 'build',
       drafts: {
         customMedia: true,

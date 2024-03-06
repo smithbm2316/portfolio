@@ -1,58 +1,97 @@
 import { bundle, transform } from 'lightningcss';
-import fs from 'fs';
 
 /** @typedef {import('@11ty/eleventy/src/UserConfig').default} EleventyConfig */
 /**
  * @typedef {Object} LightningCSSOptions
- * @prop {string} outputPath - the final path for the processed CSS file
- * @prop {import('lightningcss').BundleOptions<{}>} bundle - options to pass to the `bundle()` process
- * @prop {Omit<import('lightningcss').TransformOptions<{}>, 'code'>} transform - options to pass to the `transform()` process
+ * @prop {string} entryPath - The css file to be used as your main entrypoint
+ * @prop {Omit<import('lightningcss').BundleOptions<{}>, 'filename'>=} bundle - options to pass to the `bundle()` process
+ * @prop {Omit<import('lightningcss').TransformOptions<{}>, 'code' | 'filename'>=} transform - options to pass to the `transform()` process
+ * @prop {boolean=} [debug=false] an optional value to turn on debug output for the plugin
  */
 
 /**
- * @param {string} message
+ * @param {EleventyConfig} eleventyConfig The eleventy config instance
+ * @param {LightningCSSOptions} options Customization options for this plugin
  */
-function debug(message) {
-  if (process.env.DEBUG === '*') {
-    console.debug(`  Eleventy:PluginLightningCSS: ${message}`);
+export function pluginLightningCSS(
+  eleventyConfig,
+  options = {
+    debug: false,
+    entryPath: '',
+    bundle: {},
+    transform: {},
   }
-}
-
-/**
- * @param {EleventyConfig} eleventyConfig - The eleventy config instance
- * @param {LightningCSSOptions} options - Customization options for this plugin
- */
-export function pluginLightningCSS(eleventyConfig, options) {
-  eleventyConfig.on('eleventy.after', () => {
-    try {
-      // concatenates @imported files into one file, returns the Uint8Array of that bundled CSS file
-      debug('Bundling CSS...');
-      let { code: bundledCSS } = bundle(options.bundle);
-      debug('CSS bundled successfully');
-
-      // which we than pump through the transform pipeline
-      debug('Transforming CSS...');
-      let { code: transformedCSS } = transform({
-        ...options.transform,
-        code: bundledCSS,
-      });
-      debug('CSS transformed successfully');
-
-      // and write it to disk on the specified `options.outputPath` location
-      debug(`Writing file to "${options.outputPath}"...`);
-      fs.writeFileSync(options.outputPath, transformedCSS, {
-        flag: 'w',
-        encoding: 'utf-8',
-      });
-      debug(`Wrote file to "${options.outputPath}" successfully`);
-
-      console.log(
-        `[eleventy-plugin-lightningcss] Bundled and transformed "${options.bundle.filename}" to "${options.outputPath}" succesfully`
-      );
-    } catch (_err) {
-      console.error(
-        '[eleventy-plugin-lightningcss] There was an error processing your CSS.'
-      );
+) {
+  /**
+   * Debugging helper that logs error messages to the console when the DEBUG environment variable is provided to Eleventy or `options.debug` is `true`.
+   * @param {string} message
+   * @returns {void}
+   */
+  function debug(message) {
+    if (process.env.DEBUG === '*' || options.debug) {
+      console.debug(`  Eleventy:PluginLightningCSS: ${message}`);
     }
+  }
+
+  eleventyConfig.addTemplateFormats('css');
+  eleventyConfig.addExtension('css', {
+    outputFileExtension: 'css',
+    /**
+     * @param {string} _inputContent the full string for the template that Eleventy is currently processing
+     * @param {string} inputPath the path to the template that Eleventy is currently processing
+     * @returns {function():Promise<string>|undefined} a `Promise` that returns a `string` or `undefined`
+     */
+    compile(_inputContent, inputPath) {
+      try {
+        /**
+         * @callback eleventyUrl
+         * @param {string} inputUrl the URL to normalize
+         * @returns {string} the normalized URL
+         */
+        /**
+         * Eleventy's global `url` filter for normalizing paths
+         * @type {eleventyUrl}
+         */
+        const url = eleventyConfig.getFilter('url');
+
+        /** The normalized path for the current Eleventy template */
+        let templatePath = url(inputPath);
+        /** The normalized path for the path provided to the plugin in the user's config */
+        let entryPath = url(options.entryPath);
+
+        // only process the `options.entryPath` file
+        if (templatePath !== entryPath) {
+          debug(`Skipping template at "${templatePath}"`);
+          return;
+        }
+        debug(`Processing template "${templatePath}"`);
+
+        // concatenates @imported files into one file, returns the Uint8Array of that bundled CSS file
+        debug('Bundling CSS...');
+        let { code: bundledCSS } = bundle({
+          ...options.bundle,
+          filename: templatePath,
+        });
+        debug('CSS bundled successfully');
+
+        // which we than pump through the transform pipeline
+        debug('Transforming CSS...');
+        let { code: transformedCSS } = transform({
+          ...options.transform,
+          filename: templatePath,
+          code: bundledCSS,
+        });
+        debug('CSS transformed successfully');
+
+        return async () => {
+          debug(`Bundled and transformed "${templatePath}" successfully`);
+          return transformedCSS.toString();
+        };
+      } catch (_err) {
+        console.error(
+          '[eleventy-plugin-lightningcss] There was an error processing your CSS.'
+        );
+      }
+    },
   });
 }

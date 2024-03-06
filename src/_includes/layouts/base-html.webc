@@ -12,8 +12,8 @@
   <title @text="site.title"></title>
 
   <!--- TODO: add CSS as a custom template that 11ty processes via LightningCSS directly, to avoid having to use the webc:keep here --->
-  <link href="/assets/main.css" rel="preload" as="style" webc:keep>
-  <link href="/assets/main.css" rel="stylesheet" webc:keep>
+  <link href="/styles/main.css" rel="preload" as="style" webc:keep>
+  <link href="/styles/main.css" rel="stylesheet" webc:keep>
 
   <link href="/assets/prism-theme.css" rel="stylesheet" webc:if="loadPrismCSS" webc:keep>
 
